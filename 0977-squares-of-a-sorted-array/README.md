@@ -28,3 +28,19 @@ After sorting, it becomes [0,1,9,16,100].
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> Squaring each element and sorting the new array is very trivial, could you find an <code>O(n)</code> solution using a different approach?
+
+### <문제>
+nums라는 정렬이 안 된 배열이 주어지고,  배열 내 각 숫자를 제곱한 값들을 오름차순으로 정렬하여 새로운 배열을 반환해야 한다.
+
+### <풀이>
+```
+for(int i = 0; i < nums.length; i++){
+            nums[i] = (int) Math.pow(nums[i], 2);
+}
+```
+nums의 크기만큼 for문을 돌려 각 인덱스의 값을 제곱하여 nums에 넣는다.
+
+```
+Arrays.sort(nums);
+```
+자바에서 제공하는 배열 정렬 메서드를 사용하여 정렬을 하였다.
