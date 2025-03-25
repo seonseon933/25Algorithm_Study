@@ -41,3 +41,19 @@
 	<li><code>-1000 &lt;= target &lt;= 1000</code></li>
 	<li>The tests are generated such that there is <strong>exactly one solution</strong>.</li>
 </ul>
+
+### 문제
+주어진 배열 numbers에서, 오름차순으로 정렬된 두 개의 숫자를 찾아 그 합이 target과 같은 경우를 찾아야 한다.
+찾은 두 숫자의 인덱스를 1부터 시작하는 인덱스로 변환하여 [index1, index2] 형태의 배열로 반환해야 한다.
+
+### 풀이
+배열은 정렬이 되어있기에 Two Points를 사용할 수 있고, O(n) 시간 복잡도로 해결이 가능하다.
+
+왼쪽 포인터(left)를 0에서 시작, 오른쪽 포인터(right)를 배열 끝에서 시작
+
+1. 두 수의 합을 계산하여 target과 비교한다.
+2, numbers[left] + numbers[right] == target이면 정답 반환하고, 
+   합이 target보다 작다면 left++ 를,
+   합이 target보다 크다면 right-- 해준다.
+
+정답이 문제 조건상 반드시 존재하므로, while문이 종료되기 전에 정답을 찾을 수 있다.
