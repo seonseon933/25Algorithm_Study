@@ -46,3 +46,49 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 
 <p>&nbsp;</p>
 <p><strong>Follow up: </strong>Can you come up with an algorithm that runs in <code>O(m + n)</code> time?</p>
+
+### 문제
+두 개의 정렬된 배열 nums1과 nums2를 합쳐 nums1 내부에 오름차순으로 정렬된 상태로 저장해야 한다. nums1 내부에 저장해야 하며, 새로운 배열을 만들면 안 된다.
+<code>
+<1단계>
+       p1     p      p2
+   [1,2,3,0,0,0] [2,5,6]
+<2단계>
+       p1   p      p2
+   [1,2,3,0,0,6] [2,5,6]
+<3단계>
+       p1 p      p1
+   [1,2,3,0,5,6] [2,5,6]
+<4단계>
+     p1 p        p1
+   [1,2,3,3,5,6] [2,5,6]
+<5단계>
+      p          끝
+   [1,2,2,3,5,6] [2,5,6]
+</code>
+
+### 풀이
+nums1의 앞쪽부터 채우는 경우, 기존 요소들을 계속 이동해야 하므로 뒤에서부터 채워준다. nums1의 포인터 하나, nums2의 포인터 하나를 사용해 각 요소를 비교하여 큰 값은 nums1의 뒤쪽에 채워준다. 
+
+```
+while(p1 >= 0 && p2 >= 0){
+            if(nums1[p1] > nums2[p2]){
+                nums1[p] = nums1[p1];
+                p1--;
+            }else{
+                nums1[p] = nums2[p2];
+                p2--;
+            }
+            p--;
+        }
+```
+nums1[p1]과 nums2[p2] 중 더 큰 값을 nums1[p] 위치에 저장하고,  해당 배열의 포인터를 왼쪽으로 이동시킨다. p위치에 값이 채워졌으니 p를 감소시켜 다음 비교할 위치를 지정한다.
+
+```
+while (p2 >= 0) {
+    nums1[p] = nums2[p2];
+    p2--;
+    p--;
+}
+```
+m = 0, n = 1같은 경우를 고려하여 p2에 남은 요소가 있다면 nums1에 넣어준다.
